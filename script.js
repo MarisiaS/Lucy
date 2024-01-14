@@ -1,9 +1,8 @@
-const textInputField = document.querySelector("#text-input")
-const form = document.querySelector("#form")
-const clean = document.querySelector("#clean-button")
-const utterThis = new SpeechSynthesisUtterance()
-const synth = window.speechSynthesis
-let ourText = ""
+const textInputField = document.querySelector("#text-input");
+const form = document.querySelector("#form");
+const clean = document.querySelector("#clean-button");
+const utterThis = new SpeechSynthesisUtterance();
+const synth = window.speechSynthesis;
 
 const checkBrowserCompatibility = () => {
   "speechSynthesis" in window
@@ -11,16 +10,18 @@ const checkBrowserCompatibility = () => {
     : console.log("Web Speech API not supported :-(")
 }
 
-checkBrowserCompatibility()
+checkBrowserCompatibility();
+
 textInputField.focus();
+
 form.onsubmit = (event) => {
-    event.preventDefault()
-    ourText = textInputField.value
-    utterThis.text = ourText
-    synth.speak(utterThis)
-    textInputField.focus()
-  }
+    event.preventDefault();
+    utterThis.text = textInputField.value;
+    synth.speak(utterThis);
+    textInputField.focus();
+}
 
 function cleanText() {
-    document.getElementById("text-input").value = "";
+    textInputField.value = "";
+    textInputField.focus();
 }
